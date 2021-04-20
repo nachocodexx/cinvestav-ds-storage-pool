@@ -6,9 +6,13 @@ import pureconfig.ConfigSource
 //import mx.cinvestav.config.
 class LoadBalancerSpec extends munit .FunSuite {
   private implicit val cfg: DefaultConfig = ConfigSource.default.load[DefaultConfig].getOrElse(DefaultConfig("","",0,
-    Nil,"",1))
-  val values: Seq[Int] = 0 until 100
+    Nil,"",1,""))
+  val values: Seq[Int] = 0 until 99
+  test("aa"){
+    println(cfg)
+  }
   test("Load balancer: RB"){
+
     val counter = scala.collection.mutable.Map("sn-00"->0,"sn-01"->0,"sn-02"->0)
     values.foreach{ i=>
       val node = LoadBalancer("RB",counter)
